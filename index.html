@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BCA Premium Live Test</title>
+    <style>
+        body { 
+            font-family: 'Segoe UI', Arial, sans-serif; 
+            background-color: #eef2f5; 
+            color: #333;
+            padding: 20px; 
+            margin: 0;
+        }
+        .container { 
+            background: white; 
+            max-width: 900px; 
+            margin: 0 auto; 
+            padding: 30px; 
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1); 
+            border-top: 8px solid #1a5276; 
+            border-radius: 8px;
+        }
+        .header { text-align: center; border-bottom: 2px solid #1a5276; padding-bottom: 15px; margin-bottom: 25px; }
+        .header h1 { margin: 0; color: #1a5276; font-size: 26px; }
+        .header h2 { margin: 5px 0 0; color: #555; font-size: 16px; }
+        .instructions { background: #fef9e7; padding: 15px; border-left: 5px solid #f39c12; font-size: 14px; margin-bottom: 25px; border-radius: 4px; }
+        .section-title { background: #1a5276; color: white; padding: 10px 15px; font-size: 16px; font-weight: bold; margin: 30px 0 15px 0; border-radius: 4px; }
+        .question-block { margin-bottom: 20px; padding: 15px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; }
+        .question-text { font-weight: 600; color: #1e293b; margin-bottom: 12px; font-size: 15px; }
+        .options { display: flex; flex-direction: column; gap: 8px; }
+        .option-label { display: flex; align-items: center; padding: 8px 12px; background: white; border: 1px solid #cbd5e1; border-radius: 4px; cursor: pointer; transition: 0.2s; font-size: 14px; }
+        .option-label:hover { background: #f1f5f9; }
+        .option-label input { margin-right: 10px; cursor: pointer; }
+        
+        /* Result Highlights */
+        .correct-answer { background-color: #d4edda !important; border-color: #28a745 !important; color: #155724 !important; font-weight: bold; }
+        .wrong-answer { background-color: #f8d7da !important; border-color: #dc3545 !important; color: #721c24 !important; text-decoration: line-through; }
+        
+        .submit-btn { display: block; width: 100%; padding: 15px; background: #1a5276; color: white; border: none; font-size: 18px; font-weight: bold; border-radius: 6px; cursor: pointer; margin-top: 30px; transition: 0.3s; }
+        .submit-btn:hover { background: #154360; }
+        
+        #result-box { display: none; background: #d4edda; color: #155724; border: 2px solid #28a745; padding: 20px; margin-top: 30px; text-align: center; border-radius: 8px; font-size: 22px; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>12th - LIVE EXAM PORTAL</h1>
+        <h3> सूरदास Online Test (50 Questions)</h3>
+<h2 style="font-size:10px; color:#888; font-weight:normal;">
+    यह test sangam (in id-@sangam__zero) द्वारा बनाया गया है। यदि आप भी अपने लिए इसी प्रकार का online test बनवाना चाहते हैं, तो 9241967602 पर Message कर सकते हैं।</h2>
+    </div>
+
+    <div class="instructions">
+        <strong>निर्देश:</strong> सभी प्रश्नों के उत्तर दें। प्रत्येक प्रश्न के 4 विकल्प हैं। परीक्षण पूरा करने के बाद <strong>"Submit Test"</strong> पर क्लिक करें ताकि आप अपना स्कोर और सही उत्तर देख सकें।
+    </div>
+
+    <form id="quizForm">
+        
+        <!-- SECTION 01 -->
+        <div class="section-title">SECTION 01. </div>
+        
+        <script>
+            // All 50 Questions Data (Generated Dynamically for clean code)
+           const questions = [
+                // SECTION - पद (सूरदास) - Hindi 12th Objective Questions
+                { q: "1. सूरदास की कौन-सी रचना है ?", opt: ["पुत्र वियोग", "कड़बक", "छप्पय", "पद"], ans: 3 },
+                { q: "2. सूरदास किस भक्ति के कवि हैं ?", opt: ["रामभक्ति", "कृष्णभक्ति", "मातृभक्ति", "देशभक्ति"], ans: 1 },
+                { q: "3. सूरदास किस भाषा के प्रसिद्ध कवि हैं ?", opt: ["अवधी", "खड़ी बोली", "ब्रजभाषा", "मैथिली"], ans: 2 },
+                { q: "4. वात्सल्य के क्षेत्र में अद्वितीय कवि कौन हैं ?", opt: ["सूरदास", "तुलसीदास", "कबीरदास", "नाभादास"], ans: 0 },
+                { q: "5. सूरदास किस धारा के कवि हैं ?", opt: ["रामाश्रयी", "कृष्णाश्रयी", "शैव्य", "इनमें से कोई नहीं"], ans: 1 },
+                { q: "6. कृष्ण कहाँ बैठकर भोजन कर रहे हैं ?", opt: ["नंद की गोद में", "यशोदा की गोद में", "यमुना के किनारे", "कदम्ब के पेड़ पर"], ans: 0 },
+                { q: "7. प्रस्तुत प्रथम पद में कृष्ण को किसकी सूचना दी जाती है ?", opt: ["रात्रि होने की", "दोपहर होने की", "भोर होने की", "इनमें किसी की नहीं"], ans: 2 },
+                { q: "8. सूरदास हिन्दी साहित्य के किस काल के कवि हैं ?", opt: ["आदिकाल", "भक्तिकाल", "रीतिकाल", "आधुनिक काल"], ans: 1 },
+                { q: "9. कौन-सी रचना सूरदास की नहीं है ?", opt: ["सूरसागर", "साहित्यलहरी", "सूरसारावली", "सतसई"], ans: 3 },
+                { q: "10. कौन-सी रचना सूरदास की है ?", opt: ["सतसई", "दोहावली", "सूरसागर", "गीतावली"], ans: 2 },
+                { q: "11. सूरदास किस चीज की भूखा है ?", opt: ["कृष्ण की जूठन की", "प्रेम की", "काव्य रचना की", "इनमें से कोई नहीं"], ans: 0 },
+                { q: "12. सूरदास की अनुमानित जन्म तिथि क्या है ?", opt: ["1475 ई०", "1478 ई०", "1480 ई०", "1482 ई०"], ans: 1 },
+                { q: "13. निम्नलिखित में से कौन-सा कवि अष्टछाप का नहीं है ?", opt: ["सूरदास", "कृष्णदास", "जायसी", "कुम्भनदास"], ans: 2 },
+                { q: "14. 'कछुक खात कछुक धरनि गिरावत छवि निरखति नंद-रनियाँ' में कौन-सा अलंकार है ?", opt: ["उपमा", "रूपक", "यमक", "अनुप्रास"], ans: 3 },
+                { q: "15. 'कँवल कुसुम फूले', 'नर नारी', 'सूर-स्याम' में कौन-सा अलंकार है ?", opt: ["उपमा", "अनुप्रास", "रूपक", "यमक"], ans: 1 },
+                { q: "16. 'साहित्य लहरी' किनकी रचना है ?", opt: ["जायसी", "सूरदास", "कबीर", "तुलसीदास"], ans: 1 },
+                { q: "17. सूरदास की रचनाओं की भाषा क्या है ?", opt: ["अवधी", "ब्रजभाषा", "खड़ीबोली", "मैथिली"], ans: 1 },
+                { q: "18. सूरदास के गुरु का नाम क्या था ?", opt: ["नरहरिदास", "बिट्ठलनाथ", "बल्लभाचार्य", "आनंददास"], ans: 2 },
+                { q: "19. सूरदास किस मार्ग में दीक्षित हुए ?", opt: ["अष्टछाप", "संतमार्ग", "पुष्टिमार्ग", "इनमें से कोई नहीं"], ans: 2 },
+                { q: "20. वल्लभाचार्य से मिलने के पूर्व सूरदास किस भाव के पद गाते थे ?", opt: ["प्रेम", "विरक्ति", "दैन्य", "अवसाद"], ans: 2 },
+                { q: "21. 'सूरसागर' किसकी रचना है ?", opt: ["रैदास", "सूरदास", "नंददास", "तुलसीदास"], ans: 1 },
+                { q: "22. द्वितीय पद में किस खाद्य पदार्थ का उल्लेख नहीं हुआ है ?", opt: ["दही", "माखन", "मिसरी", "अपूप"], ans: 3 },
+                { q: "23. सूरदास की कृति है –", opt: ["'प्रणभंग'", "'जयद्रथ वध'", "'साहित्यलहरी'", "'बरवैरामायण'"], ans: 2 },
+                { q: "24. 'सूरसागर' किस भाषा में रचित है ?", opt: ["भोजपुरी में", "संस्कृत में", "ब्रजभाषा में", "अवधी में"], ans: 2 },
+                { q: "25. सूरदास के संकलित पदों में कौन-सा रस है ?", opt: ["श्रृंगार रस", "वात्सल्य रस", "हास्य रस", "रौद्र रस"], ans: 1 },
+                { q: "26. 'कनियाँ' का क्या अर्थ होता है ?", opt: ["स्त्री", "वधू", "पत्नी", "गोद"], ans: 3 },
+                { q: "27. भगवान श्रीकृष्ण किस कवि के पूज्य थे ?", opt: ["तुलसीदास के", "जायसी के", "कबीरदास के", "सूरदास के"], ans: 3 }
+            ];
+            // Render Questions
+            questions.forEach((item, index) => {
+                if(index === 10) document.write('<div class="section-title">SECTION 02. </div>');
+                if(index === 20) document.write('<div class="section-title">SECTION 03. </div>');
+                if(index === 30) document.write('<div class="section-title">SECTION 04. </div>');
+                if(index === 40) document.write('<div class="section-title">SECTION 05. </div>');
+
+                let optionsHTML = '';
+                item.opt.forEach((option, i) => {
+                    optionsHTML += `
+                        <label class="option-label" id="label-q${index}-opt${i}">
+                            <input type="radio" name="q${index}" value="${i}">
+                            ${String.fromCharCode(97 + i)}) ${option}
+                        </label>`;
+                });
+
+                document.write(`
+                    <div class="question-block" id="qBlock${index}">
+                        <div class="question-text">${item.q}</div>
+                        <div class="options">${optionsHTML}</div>
+                    </div>
+                `);
+            });
+        </script>
+
+        <button type="button" class="submit-btn" onclick="calculateScore()">Submit Test & Check Result</button>
+    </form>
+
+    <div id="result-box"></div>
+
+</div>
+
+<script>
+    function calculateScore() {
+        let score = 0;
+        let total = questions.length;
+
+        questions.forEach((item, index) => {
+            // Get selected option
+            let selected = document.querySelector(`input[name="q${index}"]:checked`);
+            let correctValue = item.ans;
+            
+            // Highlight correct answer permanently
+            let correctLabel = document.getElementById(`label-q${index}-opt${correctValue}`);
+            correctLabel.classList.add("correct-answer");
+
+            if (selected) {
+                let selectedValue = parseInt(selected.value);
+                if (selectedValue === correctValue) {
+                    score++;
+                } else {
+                    // Highlight wrong answer if user selected it
+                    let wrongLabel = document.getElementById(`label-q${index}-opt${selectedValue}`);
+                    wrongLabel.classList.add("wrong-answer");
+                }
+            }
+        });
+
+        // Show Score
+        let resultBox = document.getElementById('result-box');
+        resultBox.style.display = "block";
+        
+        let percentage = (score / total) * 100;
+        let message = "";
+        
+        if(percentage >= 80) message = "उत्कृष्ट प्रदर्शन! 🌟";
+        else if(percentage >= 50) message = "अच्छा प्रयास, थोड़ी और मेहनत करें! 👍";
+        else message = "आपको और अभ्यास की आवश्यकता है! 📚";
+
+        resultBox.innerHTML = `आपका स्कोर: ${score} / ${total} <br><span style="font-size:18px; color:#333;">${message}</span>`;
+        
+        // Scroll to result
+        window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+    }
+</script>
+
+</body>
+</html>
